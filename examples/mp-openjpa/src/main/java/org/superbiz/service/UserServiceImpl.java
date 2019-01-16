@@ -5,7 +5,7 @@
  */
 package org.superbiz.service;
 
-import org.superbiz.service.UserService;
+import java.util.ArrayList;
 import org.superbiz.model.User;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -25,12 +25,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User find(int id) {
-        return manager.find(User.class, id);
+        User user = new User();
+        user.setId(1);
+        user.setFirstName("Carl");
+        user.setLastName("Smith");
+        //return manager.find(User.class, id);
+        return user;
     }
 
     @Override
     public List<User> findAll() {
-        return manager.createQuery("select u from User u").getResultList();
+        List<User> users = new ArrayList<>();
+        users.add(find(0));
+        return users;
+        //return manager.createQuery("select u from User u").getResultList();
     }
 
 }
